@@ -33,10 +33,9 @@ ed2k://|file|[GFW.Press][%E7%BF%BB%E5%A2%99][%E5%A4%A7%E6%9D%80%E5%99%A8][Androi
 
 以 CentOS 为例:
 
-一键安装：wget -N --no-check-certificate https://raw.githubusercontent.com/bysight/gfw.press/master/install_server_centos.sh && chmod +x install_server_centos.sh && bash install_server_centos.sh
 
 第一步：下载 gfw.press
-
+yum install git -y
 cd / && git clone https://github.com/chinashiyu/gfw.press.git ;
 
 第二步：安装 JDK
@@ -63,6 +62,8 @@ cache deny all
 
 3.3启动 squid软件
 chkconfig squid on && service squid start
+or
+systemctl enable squid.service
 第四步：修改连接帐号文件user.txt
 
 每行表示一个帐号，由 端口号+空格+密码 组成，密码长度至少8位，必需包含大小写字母和数字
