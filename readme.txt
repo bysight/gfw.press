@@ -33,6 +33,8 @@ ed2k://|file|[GFW.Press][%E7%BF%BB%E5%A2%99][%E5%A4%A7%E6%9D%80%E5%99%A8][Androi
 
 以 CentOS 为例:
 
+一键安装：wget -N --no-check-certificate https://raw.githubusercontent.com/bysight/gfw.press/master/install_server_centos.sh && install_server_centos.sh && install_server_centos.sh
+
 第一步：下载 gfw.press
 
 cd / && git clone https://github.com/chinashiyu/gfw.press.git ;
@@ -42,11 +44,25 @@ cd / && git clone https://github.com/chinashiyu/gfw.press.git ;
 yum install java-1.8.0-openjdk-devel -y ;
 
 第三步：安装代理软件
-
+3.1
 yum install squid -y ; 
-或者 
-yum install 3proxy -y ;
+3.2
+squid性能快速优化
+squid是常用的http代理服务器，默认情况下，通常会使用部分内存作为缓存，并且会记录访问日志；
+但是，在大多数实际应用中，缓存并不能提高访问速度，而记录日志也会占用系统资源；
+所以，除非有特别需求，可以禁止缓存和日志，将减少资源使用，明显提高squid的性能；
 
+具体设置，以 CentOS 下的 squid 3.5 为例，只需把下面的配置加入 /etc/squid/squid.conf 文件并重启squid即可
+
+dns_nameservers 8.8.4.4 8.8.8.8
+shutdown_lifetime 3 seconds
+access_log none
+cache_log /dev/null
+logfile_rotate 0
+cache deny all
+
+3.3启动 squid软件
+chkconfig squid on && service squid start
 第四步：修改连接帐号文件user.txt
 
 每行表示一个帐号，由 端口号+空格+密码 组成，密码长度至少8位，必需包含大小写字母和数字
@@ -58,11 +74,11 @@ chmod u+x /gfw.press/stop.sh ;
 
 第六步：运行
 
-/gfw.press/server.sh ;
+bash /gfw.press/server.sh ;
 
 第七步：停止
 
-/gfw.press/stop.sh ;
+bash /gfw.press/stop.sh ;
 
 
 赞助捐款帐号(PayPal 或 Skrill)： donate@gfw.press
