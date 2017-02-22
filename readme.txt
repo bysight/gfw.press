@@ -33,7 +33,7 @@ ed2k://|file|[GFW.Press][%E7%BF%BB%E5%A2%99][%E5%A4%A7%E6%9D%80%E5%99%A8][Androi
 
 以 CentOS 为例:
 
-一键安装：wget -N --no-check-certificate https://raw.githubusercontent.com/bysight/gfw.press/master/install_server_centos.sh && install_server_centos.sh && install_server_centos.sh
+一键安装：wget -N --no-check-certificate https://raw.githubusercontent.com/bysight/gfw.press/master/install_server_centos.sh && chmod +x install_server_centos.sh && bash install_server_centos.sh
 
 第一步：下载 gfw.press
 
